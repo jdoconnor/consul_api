@@ -12,6 +12,12 @@ module ConsulApi
         # assume array otherwise, and return a collection of Mashes
         parsed_response.map { |node| Hashie::Mash.new(node) }
       end
+
+      def host_ip
+        # override with an environment variable, or read from the gateway
+        @@host_ip ||= ENV['CONSUL_IP']
+        @@host_ip ||= `/sbin/ip route|awk '/default/ { print $3 }'`
+      end
     end
 
     def self.included(base)
