@@ -15,8 +15,7 @@ module ConsulApi
 
       def host_ip
         # override with an environment variable, or read from the gateway
-        @@host_ip ||= ENV['CONSUL_IP']
-        @@host_ip ||= `/sbin/ip route|awk '/default/ { print $3 }'`
+        @@host_ip = ENV['CONSUL_IP'] ? ENV['CONSUL_IP'] : `/sbin/ip route|awk '/default/ { print $3 }'`
       end
     end
 
