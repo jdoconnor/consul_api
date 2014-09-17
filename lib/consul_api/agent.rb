@@ -35,7 +35,7 @@ module ConsulApi
     end
 
     def self.check_pass(check_id, query={})
-      issue_request(path: "/check/pass/#{check_id}", method: :put, query: query)
+      issue_request(path: "/check/pass/#{check_id}", query: query)
     end
 
     def self.check_warn(check_id, query={})
@@ -47,7 +47,7 @@ module ConsulApi
     end
 
     def self.service_register(query)
-      issue_request(path: '/service/', query: query)
+      issue_request(path: '/service/register', query: query, method: :put)
     end
 
     def self.service_deregister(service_id)
@@ -55,7 +55,7 @@ module ConsulApi
     end
 
     def self.base_url
-      "#{ENV['CONSUL_SERVER_URL']}/v1/agent"
+      "#{consul_api_url}/v1/agent"
     end
   end
 end

@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://127.0.0.1:8500/v1/agent/services
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 17 Sep 2014 22:03:52 GMT
+      Content-Length:
+      - '162'
+    body:
+      encoding: UTF-8
+      string: '{"123":{"ID":"123","Service":"abc","Tags":null,"Port":0},"jockey_consul_update":{"ID":"jockey_consul_update","Service":"docker_consul_update","Tags":[],"Port":0}}'
+    http_version: 
+  recorded_at: Wed, 17 Sep 2014 22:03:52 GMT
+recorded_with: VCR 2.9.2

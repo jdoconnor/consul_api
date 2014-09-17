@@ -31,7 +31,7 @@ module ConsulApi
     end
 
     def self.base_url
-      "#{ENV['CONSUL_SERVER_URL']}/v1/catalog"
+      "#{consul_api_url}/v1/catalog"
     end
   end
 end

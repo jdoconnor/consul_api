@@ -15,7 +15,7 @@ module ConsulApi
 
     def self.resolver
       Resolv::DNS.new(
-        nameserver_port: [[host_ip, 8600]],
+        nameserver_port: [[consul_ip, consul_dns_port]],
         search: [],
         ndots: 1
       )
