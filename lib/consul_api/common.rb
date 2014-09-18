@@ -11,18 +11,17 @@ module ConsulApi
         # gets and puts will fail with an http status code in the 4xx and 5xx range
         fail "http status #{response.status} returned from consul" if response.status >= 400
 
-        # if the response is empty, return an empty hash
-        body = response.body == '' ? '{}' : response.body
-
+        # return a nil of the response is 'null'
+        return nil if response.body == nil || response.body == 'null'
         begin
+          # if the response is empty, return an empty hash
+          body = response.body == '' ? '{}' : response.body
           parsed_response = JSON.parse(body)
         rescue => e
           fail "unable to parse the json returned by Consul.  Returned data: #{response.body}"
         end
 
-        return Hashie::Mash.new(parsed_response) if parsed_response.is_a?(Hash)
-        # assume array otherwise, and return a collection of Mashes
-        parsed_response.map { |node| Hashie::Mash.new(node) }
+        parsed_response
       end
 
       def consul_ip
